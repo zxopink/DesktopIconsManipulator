@@ -21,4 +21,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DekstopIconsManipulator\DekstopIconsManipulator.csproj" />
+  </ItemGroup>
+
 </Project>

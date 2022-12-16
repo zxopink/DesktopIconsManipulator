@@ -15,6 +15,10 @@ Source/Source.sln
 *.user
 *.unityproj
 *.booproj
+*.dll
+*.exp
+*.lib
+*.pdb
 bin/
 .vs/
 TestDotNetCore/

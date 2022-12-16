@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CsDesktop
+namespace DesktopIconsManipulator
 {
     public partial class FolderMethods
     {

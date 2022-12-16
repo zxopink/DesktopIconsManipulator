@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopIconsManipulator;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -7,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CsDesktop
+namespace Playground
 {
     
     /// <summary>
@@ -23,13 +24,12 @@ namespace CsDesktop
             Wrapper = FolderMethods.Instance;
         }
 
-        public async void LoopIt()
+        public async void LoopIt(string? fileName)
         {
             string deskPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             var files = Directory.GetFiles(deskPath);
             var rndFile = files[Random.Shared.Next(0, files.Length)];
-            //var file = Path.GetFileName(rndFile);
-            var file = "VALORANT";
+            var file = fileName ?? Path.GetFileName(rndFile);
             await Task.Yield();
             Stopwatch s = Stopwatch.StartNew();
             while (true)

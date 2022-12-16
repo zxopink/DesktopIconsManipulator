@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+///Made by Yoav Haik
+///Big thanks to Raymond Chen and his developer blog post:
+///https://devblogs.microsoft.com/oldnewthing/20130318-00/?p=4933
 
-namespace CsDesktop
+namespace DesktopIconsManipulator
 {
     /// <summary>Singleton, use `FolderMethods.Instance`</summary>
     public unsafe sealed partial class FolderMethods : IDisposable
     {
-        //private (IntPtr _MainH, IntPtr _FolderH, IntPtr _ShellH) ptrs { get; set; }
         private IntPtr _MainCOM { get; set; }
         private IntPtr _FolderCOMPtr { get; set; }
         private IntPtr _ShellCOMPtr { get; set; }
