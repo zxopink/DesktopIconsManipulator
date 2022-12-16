@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DekstopIconsManipulator\DekstopIconsManipulator.csproj" />
+    <ProjectReference Include="..\DesktopIconsManipulator\DesktopIconsManipulator.csproj" />
   </ItemGroup>
 
 </Project>
