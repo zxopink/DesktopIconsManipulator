@@ -1,0 +1,10 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(503,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  Source.cpp
+C:\Users\yoavh\source\repos\DekstopIcons\DekstopIcons\Source.cpp(1,1): warning C4005: 'UNICODE': macro redefinition
+C:\Users\yoavh\source\repos\DekstopIcons\DekstopIcons\Source.cpp(1,1): message : 'UNICODE' previously declared on the command line
+C:\Users\yoavh\source\repos\DekstopIcons\DekstopIcons\Source.cpp(2,1): warning C4005: '_UNICODE': macro redefinition
+C:\Users\yoavh\source\repos\DekstopIcons\DekstopIcons\Source.cpp(2,1): message : '_UNICODE' previously declared on the command line
+C:\Users\yoavh\source\repos\DekstopIcons\DekstopIcons\Source.cpp(78,17): warning C4477: 'wprintf' : format string '%ls' requires an argument of type 'wchar_t *', but variadic argument 3 has type 'ATL::CComHeapPtr<wchar_t>'
+  LINK : ..\DekstopIconsManipulator\DekstopIcons.dll not found or not built by the last incremental link; performing full link
+     Creating library ..\DekstopIconsManipulator\DekstopIcons.lib and object ..\DekstopIconsManipulator\DekstopIcons.exp
+  DekstopIcons.vcxproj -> C:\Users\yoavh\source\repos\DekstopIcons\DekstopIconsManipulator\DekstopIcons.dll
