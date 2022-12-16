@@ -18,7 +18,7 @@ Point newPoint = new Point(x: 50, y: 50);
 instance.SetItemPosition("Recycle Bin", newPoint);
 ```
 
-## A Fun little tween animation
+## A Fun Tween Animation
 ```cs
 Point pt = instance.GetItemPosition("Recycle Bin");
 int speed = 250;
