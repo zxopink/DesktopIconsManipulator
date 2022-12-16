@@ -1,4 +1,4 @@
-# Dekstop Icons Manipulator
+# Desktop Icons Manipulator
 
 A simple way to maniplulate desktop icons in C# for Windows
 
