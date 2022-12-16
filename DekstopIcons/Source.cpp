@@ -204,3 +204,18 @@ EXTERN_DLL_EXPORT void GetItemId(int index, IFolderView* pView, IShellFolder* sp
     StrRetToStr(&str, item, &spszName);
     sprintf(dest, "%ws", spszName.m_pData); //wchar_t to char*
 }
+
+EXTERN_DLL_EXPORT int GetIconsSize(IFolderView2* pView)
+{
+    int size = -1;
+    FOLDERVIEWMODE viewMode = FVM_AUTO;
+    pView->GetViewModeAndIconSize(&viewMode, &size);
+    return size;
+}
+
+EXTERN_DLL_EXPORT bool SetIconsSize(IFolderView2* pView, int size)
+{
+    FOLDERVIEWMODE viewMode = FVM_AUTO;
+    HRESULT res = pView->SetViewModeAndIconSize(viewMode, size);
+    return SUCCEEDED(res);
+}

@@ -18,6 +18,12 @@ Point newPoint = new Point(x: 50, y: 50);
 instance.SetItemPosition("Recycle Bin", newPoint);
 ```
 
+## Get/Set Icon Size
+```cs
+int size = instance.IconsSize;
+instance.IconsSize = 64; //is medium, 128 is large and 32 is small
+```
+
 ## A Fun Tween Animation
 ```cs
 Point pt = instance.GetItemPosition("Recycle Bin");

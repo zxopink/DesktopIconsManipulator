@@ -45,5 +45,25 @@ namespace DesktopIconsManipulator
         {
             return SetItemPositionById(_FolderH, _ShellH, index, pt);
         }
+
+        /// <summary>The icons' size</summary>
+        public int IconsSize 
+        {
+            get => GetIconsSize(_FolderH);
+            set => SetIconsSize(value);
+        }
+
+        /// <returns>The icons' size</returns>
+        internal int GetIconsSize()
+        {
+            return GetIconsSize(_FolderH);
+        }
+
+        /// <param name="size">The new icon's size</param>
+        /// <returns>True if the icons' size changed, false otherwise</returns>
+        internal bool SetIconsSize(int size)
+        {
+            return SetIconsSize(_FolderH, size);
+        }
     }
 }

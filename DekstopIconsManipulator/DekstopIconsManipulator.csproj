@@ -17,14 +17,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DekstopIcons.dll" />
-    <None Remove="DekstopIcons.exp" />
-    <None Remove="DekstopIcons.lib" />
-    <None Remove="DekstopIcons.pdb" />
+    <None Remove="DesktopIcons.dll" />
+    <None Remove="DesktopIcons.exp" />
+    <None Remove="DesktopIcons.lib" />
+    <None Remove="DesktopIcons.pdb" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="DekstopIcons.dll">
+    <EmbeddedResource Include="DesktopIcons.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

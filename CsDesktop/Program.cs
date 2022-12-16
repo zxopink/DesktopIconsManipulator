@@ -10,6 +10,9 @@ using System.Drawing;
 IconsManipulator instance = IconsManipulator.Instance;
 var timer = Stopwatch.StartNew();
 
+Console.WriteLine();
+int size = instance.IconsSize;
+instance.IconsSize = 64; //is medium, 128 is large and 32 is small
 
 Point pt = instance.GetItemPosition("Recycle Bin");
 int speed = 250;
