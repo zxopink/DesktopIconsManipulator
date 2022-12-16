@@ -33,3 +33,4 @@ while (true)
 ```
 
 Result:
+![](https://github.com/zxopink/DekstopIconsManipulator/blob/main/DekstopIconsManipulator/iconmanipulator.gif)
