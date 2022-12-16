@@ -7,10 +7,22 @@ using System.Drawing;
 
 //var inst = FolderView.Instance;
 
-var inst = FolderMethods.Instance;
+IconsManipulator instance = IconsManipulator.Instance;
 var timer = Stopwatch.StartNew();
 
-FolderView.Instance.LoopIt("Counter-Strike Source");
+
+Point pt = instance.GetItemPosition("Recycle Bin");
+int speed = 250;
+int startX = 1000;
+while (true)
+{
+    int offsetX = (int)(Math.Sin(timer.Elapsed.TotalSeconds * Math.PI) * speed);
+    offsetX += startX;
+    pt.X = offsetX;
+    instance.SetItemPosition("Recycle Bin", pt);
+}
+
+//FolderView.Instance.LoopIt("Counter-Strike Source");
 while (true) ;
 //int count = 0;
 //foreach (var pair in inst.ItemsIds)

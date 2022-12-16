@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 namespace DesktopIconsManipulator
 {
     /// <summary>Singleton, use `FolderMethods.Instance`</summary>
-    public unsafe sealed partial class FolderMethods : IDisposable
+    public unsafe sealed partial class IconsManipulator : IDisposable
     {
         private IntPtr _MainCOM { get; set; }
         private IntPtr _FolderCOMPtr { get; set; }
@@ -18,10 +18,10 @@ namespace DesktopIconsManipulator
         private IntPtr _FolderH { get; set; }
         private IntPtr _ShellH { get; set; }
 
-        private static FolderMethods _instance;
-        public static FolderMethods Instance { get { if (_instance == null) _instance = new FolderMethods(); return _instance; } }
+        private static IconsManipulator _instance;
+        public static IconsManipulator Instance { get { if (_instance == null) _instance = new IconsManipulator(); return _instance; } }
 
-        private FolderMethods()
+        private IconsManipulator()
         {
             Init();
             Refresh();
@@ -54,9 +54,10 @@ namespace DesktopIconsManipulator
             _disposed = true;
 
             Release(_MainCOM, _FolderCOMPtr, _ShellCOMPtr);
+            _instance = null;
         }
 
-        ~FolderMethods()
+        ~IconsManipulator()
         {
             Dispose();
         }

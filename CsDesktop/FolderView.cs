@@ -16,12 +16,12 @@ namespace Playground
     /// </summary>
     public class FolderView
     {
-        private static FolderMethods? Wrapper = null;
+        private static IconsManipulator? Wrapper = null;
         private static FolderView? _instance = null;
         public static FolderView Instance { get { if (_instance == null) _instance = new(); return _instance; } }
         private FolderView()
         {
-            Wrapper = FolderMethods.Instance;
+            Wrapper = IconsManipulator.Instance;
         }
 
         public async void LoopIt(string? fileName)

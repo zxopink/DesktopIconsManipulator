@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DesktopIconsManipulator
 {
-    public partial class FolderMethods
+    public partial class IconsManipulator
     {
         const string DLL_NAME = "DekstopIcons.dll"; /*dynamic library's name*/
         [DllImport(DLL_NAME)]

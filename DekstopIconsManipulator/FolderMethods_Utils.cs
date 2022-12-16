@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DesktopIconsManipulator
 {
-    public partial class FolderMethods
+    public partial class IconsManipulator
     {
         /// <summary>Path to the desktop's folder</summary>
         public string DesktopFolder => Environment.GetFolderPath(Environment.SpecialFolder.Desktop);

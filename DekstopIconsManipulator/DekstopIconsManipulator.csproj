@@ -3,6 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Title>Dekstop Icon Manipulator</Title>
+    <Description>A simple way to get and set desktop icon location in Window</Description>
+    <PackageProjectUrl>https://github.com/zxopink/DekstopIconsManipulator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zxopink/DekstopIconsManipulator</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>Windows; UI; Icons</PackageTags>
+    <AssemblyVersion>0.6.0</AssemblyVersion>
+    <Copyright></Copyright>
+    <Authors>Yoav Haik</Authors>
+    <Version>0.6.0</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +27,13 @@
     <EmbeddedResource Include="DekstopIcons.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

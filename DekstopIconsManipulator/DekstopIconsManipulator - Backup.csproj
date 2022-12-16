@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DekstopIcons.dll" />
+    <None Remove="DekstopIcons.exp" />
+    <None Remove="DekstopIcons.lib" />
+    <None Remove="DekstopIcons.pdb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="DekstopIcons.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
