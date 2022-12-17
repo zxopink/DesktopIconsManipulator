@@ -14,6 +14,10 @@ Console.WriteLine();
 int size = instance.IconsSize;
 instance.IconsSize = 64; //is medium, 128 is large and 32 is small
 
+var pt1 = instance.GetItemPosition(1);
+pt1.X += instance.IconsSize;
+instance.SetItemPosition(0, pt1);
+
 Point pt = instance.GetItemPosition("Recycle Bin");
 int speed = 250;
 int startX = 1000;
