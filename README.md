@@ -39,4 +39,4 @@ while (true)
 ```
 
 ### Result:
-![](https://github.com/zxopink/DekstopIconsManipulator/blob/main/DekstopIconsManipulator/iconmanipulator.gif)
+![](https://github.com/zxopink/DesktopIconsManipulator/blob/main/DesktopIconsManipulator/iconmanipulator.gif)
