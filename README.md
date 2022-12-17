@@ -16,7 +16,7 @@ ReadOnlyCollection<IconItem> icons = instance.Icons;
 IconItem binIcon = instance.GetIcon("Recycle Bin");
 ```
 
-## Get Icon List
+## Get Icon Location
 ```cs
 Point pt = binIcon.Location;
 ```
