@@ -8,15 +8,22 @@ A simple way to maniplulate desktop icons in C# for Windows
 IconsManipulator instance = IconsManipulator.Instance;
 ```
 
-## Get Icon Location
+## Get Icons
 ```cs
-Point pt = instance.GetItemPosition("Recycle Bin");
+//Icons List
+ReadOnlyCollection<IconItem> icons = instance.Icons;
+//Or a single Icon
+IconItem binIcon = instance.GetIcon("Recycle Bin");
+```
+
+## Get Icon List
+```cs
+Point pt = binIcon.Location;
 ```
 
 ## Set Icon Location
 ```cs
-Point newPoint = new Point(x: 50, y: 50);
-instance.SetItemPosition("Recycle Bin", newPoint);
+binIcon.Location = new Point(x: 50, y: 50);
 ```
 
 ## Get/Set Icon Size
@@ -27,7 +34,7 @@ instance.IconsSize = 64; //is medium, 128 is large and 32 is small
 
 ## A Fun Tween Animation
 ```cs
-Point pt = instance.GetItemPosition("Recycle Bin");
+Point pt = binIcon.Location;
 int speed = 250;
 int startX = 1000;
 while (true)
@@ -35,7 +42,7 @@ while (true)
     int offsetX = (int)(Math.Sin(timer.Elapsed.TotalSeconds * Math.PI) * speed);
     offsetX += startX;
     pt.X = offsetX;
-    instance.SetItemPosition("Recycle Bin", pt);
+    binIcon.Location = pt;
 }
 ```
 
