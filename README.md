@@ -42,5 +42,7 @@ while (true)
 ### Result:
 ![](https://github.com/zxopink/DesktopIconsManipulator/blob/main/DesktopIconsManipulator/iconmanipulator.gif)
 
+Credit me if you use my library
+
 [NuGet]: https://img.shields.io/nuget/v/DesktopIconsManipulator?color=blue
 [NuGet-url]: https://www.nuget.org/packages/DesktopIconsManipulator
