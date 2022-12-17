@@ -21,9 +21,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DesktopIcons.exp" />
-    <None Remove="DesktopIcons.lib" />
-    <None Remove="DesktopIcons.pdb" />
     <None Remove="DesktopIconsDynamicLib.exp" />
     <None Remove="DesktopIconsDynamicLib.lib" />
     <None Remove="DesktopIconsDynamicLib.pdb" />
