@@ -1,4 +1,5 @@
 # Desktop Icons Manipulator
+[![NuGet Package][NuGet]][NuGet-url]
 
 A simple way to maniplulate desktop icons in C# for Windows
 
@@ -40,3 +41,6 @@ while (true)
 
 ### Result:
 ![](https://github.com/zxopink/DesktopIconsManipulator/blob/main/DesktopIconsManipulator/iconmanipulator.gif)
+
+[NuGet]: https://www.nuget.org/packages/DesktopIconsManipulator?color=blue
+[NuGet-url]: https://www.nuget.org/packages/DesktopIconsManipulator
