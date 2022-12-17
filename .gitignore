@@ -24,6 +24,7 @@ bin/
 TestDotNetCore/
 .idea/
 *.nupkg
+64x/
 
 /packages
 

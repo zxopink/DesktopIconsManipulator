@@ -10,9 +10,7 @@ namespace DesktopIconsManipulator
 {
     public partial class IconsManipulator
     {
-        const string DLL_NAME = "DesktopIcons.dll"; /*dynamic library's name*/
-        [DllImport(DLL_NAME)]
-        private static extern void FillPtr(IntPtr ptr);
+        const string DLL_NAME = "DesktopIconsDynamicLib.dll"; /*dynamic library's name*/
         [DllImport(DLL_NAME)]
         private static extern IntPtr/* (void**) */ InitDesktop();
         [DllImport(DLL_NAME)]

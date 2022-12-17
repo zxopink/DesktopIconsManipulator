@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 namespace DesktopIconsManipulator
 {
-    /// <summary>Singleton, use `FolderMethods.Instance`</summary>
+    /// <summary>Singleton class to manipulate desktop icons</summary>
     public unsafe sealed partial class IconsManipulator : IDisposable
     {
         private IntPtr _MainCOM { get; set; }
@@ -27,7 +27,7 @@ namespace DesktopIconsManipulator
             Refresh();
         }
 
-        /// <summary>Refresh catches data to keep up with new item changes</summary>
+        /// <summary>Refresh catched data to keep up with new item changes</summary>
         public void Refresh()
         {
             RefreshItemsIds();
@@ -48,6 +48,7 @@ namespace DesktopIconsManipulator
         }
 
         private bool _disposed = false;
+        /// <summary>Dispose all COM Objects, should be used when Application closes</summary>
         public void Dispose()
         {
             if (_disposed) return;
@@ -60,14 +61,6 @@ namespace DesktopIconsManipulator
         ~IconsManipulator()
         {
             Dispose();
-        }
-
-        public void TestMeth()
-        {
-            var ptr = Marshal.AllocHGlobal(4);
-            FillPtr(ptr);
-            int num = Marshal.PtrToStructure<int>(ptr);
-            Console.WriteLine("Num is: " + num);
         }
     }
 }

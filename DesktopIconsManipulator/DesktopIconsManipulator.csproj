@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -24,21 +24,20 @@
     <None Remove="DesktopIcons.exp" />
     <None Remove="DesktopIcons.lib" />
     <None Remove="DesktopIcons.pdb" />
+    <None Remove="DesktopIconsDynamicLib.exp" />
+    <None Remove="DesktopIconsDynamicLib.lib" />
+    <None Remove="DesktopIconsDynamicLib.pdb" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <Content Include="DesktopIcons.dll">
-        <Pack>true</Pack>
-        <PackagePath>lib\$(TargetFramework)</PackagePath>
+    <Content Include="DesktopIconsDynamicLib.dll">
+      <Pack>True</Pack>
+      <PackagePath>lib\$(TargetFramework)</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="DesktopIcons.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
+    
   <ItemGroup>
     <None Include="..\README.md">
       <Pack>True</Pack>

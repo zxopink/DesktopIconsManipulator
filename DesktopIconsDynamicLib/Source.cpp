@@ -45,7 +45,6 @@ void FindDesktopFolderView(REFIID riid, void** ppv)
 }
 
 // CCoInitialize incorporated by reference
-
 int __cdecl wmain(int argc, wchar_t** argv)
 {
     CCoInitialize init;
@@ -96,18 +95,13 @@ EXTERN_DLL_EXPORT void** InitDesktop()
     return ptrs;
 }
 
-void Release(CCoInitialize* init, CComPtr<IFolderView2> folderPt, CComPtr<IShellFolder> shellPt)
+EXTERN_DLL_EXPORT void Release(CCoInitialize* init, CComPtr<IFolderView2> folderPt, CComPtr<IShellFolder> shellPt)
 {
-    //(folderPt.p)->SetCurrentFolderFlags(FWF_AUTOARRANGE | FWF_SNAPTOGRID, 1);
+    (folderPt.p)->SetCurrentFolderFlags(FWF_AUTOARRANGE | FWF_SNAPTOGRID, 1);
 
     delete init;
     folderPt.Release();
     shellPt.Release();
-}
-
-EXTERN_DLL_EXPORT void FillPtr(int* ptr)
-{
-    *ptr = 5;
 }
 
 const wchar_t* GetWC(const char* c)
