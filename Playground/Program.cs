@@ -2,6 +2,7 @@
 
 using DesktopIconsManipulator;
 using Playground;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Drawing;
 
@@ -10,15 +11,14 @@ using System.Drawing;
 IconsManipulator instance = IconsManipulator.Instance;
 var timer = Stopwatch.StartNew();
 
-Console.WriteLine();
-int size = instance.IconsSize;
-instance.IconsSize = 64; //is medium, 128 is large and 32 is small
+ReadOnlyCollection<IconItem> icons = instance.Icons;
+IconItem binIcon = instance.GetIcon("Recycle Bin");
+while (true)
+{
+    Console.WriteLine(binIcon.Location);
+}
 
-var pt1 = instance.GetItemPosition(1);
-pt1.X += instance.IconsSize;
-instance.SetItemPosition(0, pt1);
-
-Point pt = instance.GetItemPosition("Recycle Bin");
+Point pt = binIcon.Location;
 int speed = 250;
 int startX = 1000;
 while (true)
@@ -26,7 +26,7 @@ while (true)
     int offsetX = (int)(Math.Sin(timer.Elapsed.TotalSeconds * Math.PI) * speed);
     offsetX += startX;
     pt.X = offsetX;
-    instance.SetItemPosition("Recycle Bin", pt);
+    binIcon.Location = pt;
 }
 
 //FolderView.Instance.LoopIt("Counter-Strike Source");

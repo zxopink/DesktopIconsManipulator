@@ -11,19 +11,16 @@
     <Copyright>MIT</Copyright>
     <PackageTags>Windows; UI; Icons</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyVersion>0.6.0</AssemblyVersion>
+    <AssemblyVersion>0.7.0</AssemblyVersion>
     <Copyright></Copyright>
     <Authors>Yoav Haik</Authors>
-    <Version>0.6.0</Version>
+    <Version>0.7.0</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DesktopIcons.exp" />
-    <None Remove="DesktopIcons.lib" />
-    <None Remove="DesktopIcons.pdb" />
     <None Remove="DesktopIconsDynamicLib.exp" />
     <None Remove="DesktopIconsDynamicLib.lib" />
     <None Remove="DesktopIconsDynamicLib.pdb" />
