@@ -13,6 +13,10 @@ var timer = Stopwatch.StartNew();
 
 ReadOnlyCollection<IconItem> icons = instance.Icons;
 IconItem binIcon = instance.GetIcon("Recycle Bin");
+while (true)
+{
+    Console.WriteLine(binIcon.Location);
+}
 
 Point pt = binIcon.Location;
 int speed = 250;

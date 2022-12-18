@@ -181,6 +181,19 @@ EXTERN_DLL_EXPORT bool SetItemPositionById(IFolderView* pView, IShellFolder* spF
     return SUCCEEDED(res);
 }
 
+EXTERN_DLL_EXPORT bool SetItemsPositionById(IFolderView* pView, IShellFolder* spFolder, int* indexs, POINT* pt, int ct)
+{
+    PCITEMID_CHILD* apidl = new PCITEMID_CHILD[ct];
+    for (size_t i = 0; i < ct; i++)
+    {
+        CComHeapPtr<ITEMID_CHILD> item;
+        pView->Item(indexs[i], &item);
+    }
+    HRESULT res = pView->SelectAndPositionItems(1, apidl, pt, SVSI_POSITIONITEM);
+    delete apidl;
+    return SUCCEEDED(res);
+}
+
 EXTERN_DLL_EXPORT int GetItemsCount(IFolderView* pView)
 {
     int count = -1;
@@ -212,4 +225,11 @@ EXTERN_DLL_EXPORT bool SetIconsSize(IFolderView2* pView, int size)
     FOLDERVIEWMODE viewMode = FVM_AUTO;
     HRESULT res = pView->SetViewModeAndIconSize(viewMode, size);
     return SUCCEEDED(res);
+}
+
+int GetSelectedIcon(IFolderView2* spView)
+{
+    int id = -1;
+    spView->GetSelectedItem(0, &id);
+    return id;
 }
