@@ -7,30 +7,48 @@ using System.Diagnostics;
 using System.Drawing;
 
 //var inst = FolderView.Instance;
-
 IconsManipulator instance = IconsManipulator.Instance;
-var timer = Stopwatch.StartNew();
-
 ReadOnlyCollection<IconItem> icons = instance.Icons;
 IconItem binIcon = instance.GetIcon("Recycle Bin");
+var timer = Stopwatch.StartNew();
+
+
+IconItem sel = instance.SelectedItem;
+Console.WriteLine(sel);
+Console.ReadLine();
+
+instance.AutoApply();
 while (true)
 {
-    Console.WriteLine(binIcon.Location);
+    foreach (var icon in icons)
+    {
+        Point pt = icon.Location;
+        int speed = 250;
+        int startX = 1000;
+
+
+        int offsetX = (int)(Math.Sin(timer.Elapsed.TotalSeconds * Math.PI) * speed);
+        offsetX += startX;
+        pt.X = offsetX;
+        icon.Location = pt;
+    }
 }
 
-Point pt = binIcon.Location;
-int speed = 250;
-int startX = 1000;
-while (true)
-{
-    int offsetX = (int)(Math.Sin(timer.Elapsed.TotalSeconds * Math.PI) * speed);
-    offsetX += startX;
-    pt.X = offsetX;
-    binIcon.Location = pt;
-}
+
+while (true) ;
+
+//Point pt = icon.Location;
+//int speed = 250;
+//int startX = 1000;
+//while (true)
+//{
+//    int offsetX = (int)(Math.Sin(timer.Elapsed.TotalSeconds * Math.PI) * speed);
+//    offsetX += startX;
+//    pt.X = offsetX;
+//    icon.Location = pt;
+//}
 
 //FolderView.Instance.LoopIt("Counter-Strike Source");
-while (true) ;
 //int count = 0;
 //foreach (var pair in inst.ItemsIds)
 //{

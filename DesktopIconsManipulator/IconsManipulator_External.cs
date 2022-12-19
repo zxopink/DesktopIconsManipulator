@@ -29,6 +29,11 @@ namespace DesktopIconsManipulator
         private static extern bool SetItemPositionById(IntPtr folderView, IntPtr shellFolder, int index, Point pt);
 
         [DllImport(DLL_NAME)]
+
+        private static extern bool SetItemsPositionById
+            (IntPtr folderView, IntPtr shellFolder, IntPtr indexs, IntPtr points, int length);
+
+        [DllImport(DLL_NAME)]
         private static extern int GetItemsCount(IntPtr folderPtr);
         [DllImport(DLL_NAME)]
         private static extern void GetItemId(int index, IntPtr folderPtr, IntPtr shellPtr, StringBuilder itemName);
@@ -37,5 +42,8 @@ namespace DesktopIconsManipulator
         private static extern int GetIconsSize(IntPtr folderPtr);
         [DllImport(DLL_NAME)]
         private static extern bool SetIconsSize(IntPtr folderPtr, int size);
+
+        [DllImport(DLL_NAME)]
+        private static extern int GetSelectedIcon(IntPtr folderPtr);
     }
 }

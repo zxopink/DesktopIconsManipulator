@@ -9,6 +9,7 @@
 #include <atlalloc.h>
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 #define EXTERN_DLL_EXPORT extern "C" __declspec(dllexport)
@@ -187,10 +188,11 @@ EXTERN_DLL_EXPORT bool SetItemsPositionById(IFolderView* pView, IShellFolder* sp
     for (size_t i = 0; i < ct; i++)
     {
         CComHeapPtr<ITEMID_CHILD> item;
-        pView->Item(indexs[i], &item);
+        HRESULT res = pView->Item(indexs[i], &item);
+        apidl[i] = item;
     }
-    HRESULT res = pView->SelectAndPositionItems(1, apidl, pt, SVSI_POSITIONITEM);
-    delete apidl;
+    HRESULT res = pView->SelectAndPositionItems(ct, apidl, pt, SVSI_POSITIONITEM);
+    delete[] apidl;
     return SUCCEEDED(res);
 }
 
@@ -227,7 +229,7 @@ EXTERN_DLL_EXPORT bool SetIconsSize(IFolderView2* pView, int size)
     return SUCCEEDED(res);
 }
 
-int GetSelectedIcon(IFolderView2* spView)
+EXTERN_DLL_EXPORT int GetSelectedIcon(IFolderView2* spView)
 {
     int id = -1;
     spView->GetSelectedItem(0, &id);

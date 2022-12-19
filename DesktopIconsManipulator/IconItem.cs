@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace DesktopIconsManipulator
 {
-    public class IconItem
+    public class IconItem : IEquatable<IconItem>
     {
         internal IconsManipulator Manager { get; private set; }
 
@@ -15,12 +16,23 @@ namespace DesktopIconsManipulator
 
         internal readonly string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         public string FullPath => Path.Combine(DesktopPath, Name);
-        public string Name { get; private set; }
-        public int ID { get; private set; }
+        public string Name { get; internal set; }
+        public int ID { get; internal set; }
+
+        public bool PathExist =>
+                File.Exists(FullPath) || Directory.Exists(FullPath);
+
+        internal bool _locChanged;
+        internal Point _location;
+        /// <summary>Set location for next Apply call or get the location according to the last Apply call</summary>
         public Point Location
         {
-            get => Manager.GetItemPosition(ID);
-            set => Manager.SetItemPosition(ID, value);
+            get => _location;
+            set 
+            {
+                _location = value;
+                _locChanged = true;
+            }
         }
         public Rectangle Rect => GetRectangle();
         public IconItem(IconsManipulator instance, string name, int id)
@@ -28,6 +40,8 @@ namespace DesktopIconsManipulator
             Name = name;
             ID = id;
             Manager = instance;
+            Location = GetItemPosition();
+            _locChanged = false;
         }
 
         private Rectangle GetRectangle()
@@ -35,5 +49,49 @@ namespace DesktopIconsManipulator
             int size = Manager.IconsSize;
             return new Rectangle(Location, new Size(size, size));
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(FullPath)}:{FullPath}, {nameof(ID)}:{ID}";
+        }
+
+        /// <summary>
+        /// Immediately set the icon's position, can get slow if moving more than one icon at a time.
+        /// Use the `Location` property and `IconsManipulator` instead
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public bool SetItemPosition(Point point)
+        {
+            return Manager.SetItemPosition(ID, point);
+        }
+
+        /// <summary>
+        /// Immediately get the icon's position.
+        /// Use the `Location` property instead
+        /// </summary>
+        public Point GetItemPosition()
+        {
+            return Manager.GetItemPosition(ID);
+        }
+
+        public override bool Equals(object obj) =>
+            obj is IconItem icon ? icon.Equals(this) : false;
+
+        public bool Equals(IconItem other)
+        {
+            if (other is null)
+                return false;
+
+            return FullPath == other.FullPath;
+        }
+
+        public static bool operator ==(IconItem left, IconItem right) {
+            if (left is null)
+                return right is null;
+
+            return left.Equals(right);
+        }
+        public static bool operator !=(IconItem left, IconItem right) => !(left == right);
     }
 }
