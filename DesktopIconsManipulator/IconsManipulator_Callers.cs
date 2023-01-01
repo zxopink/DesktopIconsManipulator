@@ -13,6 +13,9 @@ namespace DesktopIconsManipulator
 {
     public partial class IconsManipulator
     {
+        internal int ItemsCount =>
+            GetItemsCount(_FolderH);
+
         internal Point GetItemPosition(FileInfo file) =>
             GetItemPosition(file.Name);
         /// <param name="fname">Item's name (excluding path)</param>

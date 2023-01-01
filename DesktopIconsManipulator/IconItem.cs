@@ -19,8 +19,8 @@ namespace DesktopIconsManipulator
         public string Name { get; internal set; }
         public int ID { get; internal set; }
 
-        public bool PathExist =>
-                File.Exists(FullPath) || Directory.Exists(FullPath);
+        public bool IsFile => File.Exists(FullPath);
+        public bool IsDirectory => Directory.Exists(FullPath);
 
         internal bool _locChanged;
         internal Point _location;
@@ -28,13 +28,40 @@ namespace DesktopIconsManipulator
         public Point Location
         {
             get => _location;
-            set 
+            set
             {
                 _location = value;
                 _locChanged = true;
             }
         }
         public Rectangle Rect => GetRectangle();
+
+        public Size Size
+        {
+            get 
+            {
+                int size = Manager.IconsSize;
+                return new Size(size, size);
+            }
+        }
+
+        /// <summary>Center point of the icon</summary>
+        public Point Center
+        {
+            get
+            {
+                Size size = Size;
+                Size halfSize = new Size(size.Width / 2, size.Height / 2);
+                return Location + halfSize;
+            }
+            set
+            {
+                Size size = Size;
+                Size halfSize = new Size(size.Width / 2, size.Height / 2);
+                Location = value - halfSize;
+            }
+        }
+
         public IconItem(IconsManipulator instance, string name, int id)
         {
             Name = name;

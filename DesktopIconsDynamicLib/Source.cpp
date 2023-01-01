@@ -80,6 +80,7 @@ int __cdecl wmain(int argc, wchar_t** argv)
     return 0;
 }
 
+
 EXTERN_DLL_EXPORT void** InitDesktop()
 {
     CCoInitialize* init = new CCoInitialize();
@@ -95,6 +96,7 @@ EXTERN_DLL_EXPORT void** InitDesktop()
     //cout << "Gave pointers: " << init  << "," << spView->p << "," << spFolder->p << spView << "," << spFolder << "," ;
     return ptrs;
 }
+
 
 EXTERN_DLL_EXPORT void Release(CCoInitialize* init, CComPtr<IFolderView2> folderPt, CComPtr<IShellFolder> shellPt)
 {

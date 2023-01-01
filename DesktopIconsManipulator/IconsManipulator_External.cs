@@ -29,7 +29,6 @@ namespace DesktopIconsManipulator
         private static extern bool SetItemPositionById(IntPtr folderView, IntPtr shellFolder, int index, Point pt);
 
         [DllImport(DLL_NAME)]
-
         private static extern bool SetItemsPositionById
             (IntPtr folderView, IntPtr shellFolder, IntPtr indexs, IntPtr points, int length);
 

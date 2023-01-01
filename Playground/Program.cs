@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Drawing;
 
+
+var val = Math.Cos(Math.PI + Math.pi);
 //var inst = FolderView.Instance;
 IconsManipulator instance = IconsManipulator.Instance;
 ReadOnlyCollection<IconItem> icons = instance.Icons;

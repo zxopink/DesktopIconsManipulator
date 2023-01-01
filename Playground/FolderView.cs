@@ -36,7 +36,7 @@ namespace Playground
             {
                 int offset = 500;
                 int x = (int)(Math.Sin(s.Elapsed.TotalSeconds * Math.PI) * 250);
-                bool gotIt = Wrapper.SetItemPosition(file, new(x + offset, 150));
+                //bool gotIt = Wrapper.SetItemPosition(file, new(x + offset, 150));
             }
         }
 

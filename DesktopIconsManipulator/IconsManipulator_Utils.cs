@@ -17,6 +17,9 @@ namespace DesktopIconsManipulator
         private List<IconItem> _icons;
         public ReadOnlyCollection<IconItem> Icons => _icons.AsReadOnly();
 
+        /// <summary>Automatically refresh when an ID mismatch is detected</summary>
+        public bool AutoRefresh = false;
+
         /// <param name="name">The icons' name (file or folder name)</param>
         /// <returns>The icon or null if not found</returns>
         public IconItem GetIcon(string name)
@@ -53,10 +56,35 @@ namespace DesktopIconsManipulator
             _icons = icons;
         }
 
+        /// <summary>
+        /// Mismatched
+        /// </summary>
+        /// <returns>True if removed an item</returns>
+        private bool SafeCheck()
+        {
+            int count = ItemsCount;
+            bool found = false;
+            for (int i = 0; i < _icons.Count; i++)
+            {
+                if (_icons[i].ID >= count)
+                {
+                    _icons.RemoveAt(i--);
+                    found = true;
+                }
+            }
+
+            if (found && AutoRefresh)
+                Refresh();
+
+            return found;
+        }
+
         /// <summary>Apply location changes</summary>
         public void Apply()
         {
-            IconItem[] icons = Icons.Where(ico => ico._locChanged && ico.PathExist).ToArray();
+            SafeCheck();
+
+            IconItem[] icons = Icons.Where(ico => ico._locChanged).ToArray();
             foreach (var ico in icons)
                 ico._locChanged = false;
 
