@@ -45,8 +45,11 @@ namespace DesktopIconsManipulator
                         IconItem prevIcon = _icons.Find(ic => ic == icon);
                         if (prevIcon != null)
                         {
+                            if (icon.Location != prevIcon.Location)
+                                prevIcon.Location = icon.Location;
+                            
                             prevIcon.ID = i;
-                            icon = prevIcon;
+                            icon = prevIcon; //Replace new icon
                         }
                     }    
                     icons.Add(icon);

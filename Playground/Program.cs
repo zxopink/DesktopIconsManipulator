@@ -5,36 +5,39 @@ using Playground;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Reflection;
+
+Assembly.Load("DesktopIconsDynamicLib.dll");
+Console.WriteLine();
+
+//var val = Math.Cos(Math.PI + Math.pi);
+////var inst = FolderView.Instance;
+//IconsManipulator instance = IconsManipulator.Instance;
+//ReadOnlyCollection<IconItem> icons = instance.Icons;
+//IconItem binIcon = instance.GetIcon("Recycle Bin");
+//var timer = Stopwatch.StartNew();
 
 
-var val = Math.Cos(Math.PI + Math.pi);
-//var inst = FolderView.Instance;
-IconsManipulator instance = IconsManipulator.Instance;
-ReadOnlyCollection<IconItem> icons = instance.Icons;
-IconItem binIcon = instance.GetIcon("Recycle Bin");
-var timer = Stopwatch.StartNew();
+//IconItem sel = instance.SelectedItem;
+//Console.WriteLine(sel);
+//Console.ReadLine();
+
+//instance.AutoApply();
+//while (true)
+//{
+//    foreach (var icon in icons)
+//    {
+//        Point pt = icon.Location;
+//        int speed = 250;
+//        int startX = 1000;
 
 
-IconItem sel = instance.SelectedItem;
-Console.WriteLine(sel);
-Console.ReadLine();
-
-instance.AutoApply();
-while (true)
-{
-    foreach (var icon in icons)
-    {
-        Point pt = icon.Location;
-        int speed = 250;
-        int startX = 1000;
-
-
-        int offsetX = (int)(Math.Sin(timer.Elapsed.TotalSeconds * Math.PI) * speed);
-        offsetX += startX;
-        pt.X = offsetX;
-        icon.Location = pt;
-    }
-}
+//        int offsetX = (int)(Math.Sin(timer.Elapsed.TotalSeconds * Math.PI) * speed);
+//        offsetX += startX;
+//        pt.X = offsetX;
+//        icon.Location = pt;
+//    }
+//}
 
 
 while (true) ;

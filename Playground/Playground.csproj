@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DesktopIconsDynamicLib.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="DesktopIconsDynamicLib.dll">
+      <PackagePath>lib\$(TargetFramework)</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>True</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DesktopIconsManipulator\DesktopIconsManipulator.csproj" />
   </ItemGroup>
 

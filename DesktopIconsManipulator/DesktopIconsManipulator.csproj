@@ -26,7 +26,7 @@
     <None Remove="DesktopIconsDynamicLib.lib" />
     <None Remove="DesktopIconsDynamicLib.pdb" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Content Include="DesktopIconsDynamicLib.dll">
       <Pack>True</Pack>
@@ -34,8 +34,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-    
+ 
   <ItemGroup>
     <None Include="..\README.md">
       <Pack>True</Pack>
