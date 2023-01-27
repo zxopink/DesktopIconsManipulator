@@ -21,10 +21,19 @@ namespace DesktopIconsManipulator
         private static IconsManipulator _instance;
         public static IconsManipulator Instance { get { if (_instance == null) _instance = new IconsManipulator(); return _instance; } }
 
+        public Rectangle ScreenSize { get; }
+
         private IconsManipulator()
         {
             Init();
             Refresh();
+            ScreenSize = _GetScrenSize();
+        }
+
+        private Rectangle _GetScrenSize()
+        {
+            RECT rect = GetDesktopSize();
+            return new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
         }
 
         /// <summary>Refresh catched data to keep up with new item changes</summary>

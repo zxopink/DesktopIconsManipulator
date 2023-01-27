@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -140,5 +141,13 @@ namespace DesktopIconsManipulator
         /// <summary>Asynchronous Apply by the interval</summary>
         public Task AutoApply(int millisecondsInterval) =>
             AutoApply(TimeSpan.FromMilliseconds(millisecondsInterval));
+
+        
+        /// <summary>Checks if the current system overflow direction is right to left</summary>
+        /// <returns>true if text flows from right to left; otherwise, false.</returns>
+        public bool IsRightToLeft()
+        {
+            return !CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+        }
     }
 }

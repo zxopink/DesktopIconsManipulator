@@ -237,3 +237,22 @@ EXTERN_DLL_EXPORT int GetSelectedIcon(IFolderView2* spView)
     spView->GetSelectedItem(0, &id);
     return id;
 }
+
+EXTERN_DLL_EXPORT void RefreshView(IFolderView2* spView, int fRedrawOn)
+{
+	spView->SetRedraw(fRedrawOn);
+}
+
+EXTERN_DLL_EXPORT RECT GetDesktopSize()
+{
+    RECT desktop;
+    // Get a handle to the desktop window
+    const HWND hDesktop = GetDesktopWindow();
+    // Get the size of screen to the variable desktop
+    GetWindowRect(hDesktop, &desktop);
+    return desktop;
+}
+
+
+
+

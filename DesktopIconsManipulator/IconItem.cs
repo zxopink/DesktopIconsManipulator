@@ -34,6 +34,7 @@ namespace DesktopIconsManipulator
                 _locChanged = true;
             }
         }
+
         public Rectangle Rect => GetRectangle();
 
         public Size Size

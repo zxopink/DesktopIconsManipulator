@@ -10,7 +10,7 @@ namespace DesktopIconsManipulator
 {
     public partial class IconsManipulator
     {
-        const string DLL_NAME = "DesktopIconsDynamicLib.dll"; /*dynamic library's name*/
+        public const string DLL_NAME = "DesktopIconsDynamicLib.dll"; /*dynamic library's name*/
         [DllImport(DLL_NAME)]
         private static extern IntPtr/* (void**) */ InitDesktop();
         [DllImport(DLL_NAME)]
@@ -44,5 +44,10 @@ namespace DesktopIconsManipulator
 
         [DllImport(DLL_NAME)]
         private static extern int GetSelectedIcon(IntPtr folderPtr);
+
+        [DllImport(DLL_NAME)]
+        private static extern int RefreshView(IntPtr folderPtr, int fRedrawOn);
+        [DllImport(DLL_NAME)]
+        private static extern RECT GetDesktopSize();
     }
 }

@@ -22,24 +22,34 @@ namespace DesktopIconsManipulator
         /// <returns>The item's position relative to screen</returns>
         internal Point GetItemPosition(string fname)
         {
-            return GetItemPosition(_FolderH, _ShellH, fname);
+            Point p = GetItemPosition(_FolderH, _ShellH, fname);
+            if (IsRightToLeft())
+                FlipX(ref p);
+            return p;
         }
 
         /// <param name="index">Item's id (excluding path)</param>
         /// <returns>The item's position relative to screen</returns>
         internal Point GetItemPosition(int index)
         {
-            return GetItemPositionById(_FolderH, _ShellH, index);
+            Point p = GetItemPositionById(_FolderH, _ShellH, index);
+            if (IsRightToLeft())
+                FlipX(ref p);
+            return p;
         }
 
-        internal bool SetItemPosition(FileInfo file, Point pt) =>
-            SetItemPosition(file.Name, pt);
+        internal bool SetItemPosition(FileInfo file, Point pt)
+        {   
+            return SetItemPosition(file.Name, pt);
+        }
 
         /// <param name="fname">Item's name (excluding path)</param>
         /// <param name="pt">Point relative to screen</param>
         /// <returns>True if the Icon was found and changed, false otherwise</returns>
         internal bool SetItemPosition(string fname, Point pt)
         {
+            if (IsRightToLeft())
+                FlipX(ref pt);
             return SetItemPosition(_FolderH, _ShellH, fname, pt);
         }
 
@@ -48,7 +58,15 @@ namespace DesktopIconsManipulator
         /// <returns>True if the Icon was found and changed, false otherwise</returns>
         internal bool SetItemPosition(int index, Point pt)
         {
+            if (IsRightToLeft())
+                FlipX(ref pt);
             return SetItemPositionById(_FolderH, _ShellH, index, pt);
+        }
+
+        private void FlipX(ref Point p)
+        {
+            Rectangle screenRect = ScreenSize;
+            p.X = screenRect.Width - p.X;
         }
 
 
@@ -90,6 +108,12 @@ namespace DesktopIconsManipulator
         internal bool SetIconsSize(int size)
         {
             return SetIconsSize(_FolderH, size);
+        }
+
+        /// <summary>Force to redraw the desktop</summary>
+        public void Redraw()
+        {
+            RefreshView(_FolderH, 1);
         }
 
         /// <summary>Item selected by User</summary>
