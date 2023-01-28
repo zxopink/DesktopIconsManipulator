@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 ///Made by Yoav Haik
@@ -21,13 +22,18 @@ namespace DesktopIconsManipulator
         private static IconsManipulator _instance;
         public static IconsManipulator Instance { get { if (_instance == null) _instance = new IconsManipulator(); return _instance; } }
 
+        /// <summary>The desktop's size</summary>
         public Rectangle ScreenSize { get; }
+
+        /// <summary>True if the desktop is in RTL mode, can be caused by changing the language to Hebrew or Arabic</summary>
+        public bool IsRightToLeft { get; }
 
         private IconsManipulator()
         {
             Init();
             Refresh();
             ScreenSize = _GetScrenSize();
+            IsRightToLeft = _IsRightToLeft();
         }
 
         private Rectangle _GetScrenSize()
@@ -35,6 +41,11 @@ namespace DesktopIconsManipulator
             RECT rect = GetDesktopSize();
             return new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
         }
+
+        /// <summary>Checks if the current system overflow direction is right to left</summary>
+        /// <returns>true if text flows from right to left; otherwise, false.</returns>
+        private bool _IsRightToLeft() => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+
 
         /// <summary>Refresh catched data to keep up with new item changes</summary>
         public void Refresh()

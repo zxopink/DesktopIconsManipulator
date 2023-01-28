@@ -23,8 +23,9 @@ namespace DesktopIconsManipulator
         internal Point GetItemPosition(string fname)
         {
             Point p = GetItemPosition(_FolderH, _ShellH, fname);
-            if (IsRightToLeft())
+            if (IsRightToLeft)
                 FlipX(ref p);
+            
             return p;
         }
 
@@ -33,8 +34,9 @@ namespace DesktopIconsManipulator
         internal Point GetItemPosition(int index)
         {
             Point p = GetItemPositionById(_FolderH, _ShellH, index);
-            if (IsRightToLeft())
+            if (IsRightToLeft)
                 FlipX(ref p);
+            
             return p;
         }
 
@@ -48,8 +50,9 @@ namespace DesktopIconsManipulator
         /// <returns>True if the Icon was found and changed, false otherwise</returns>
         internal bool SetItemPosition(string fname, Point pt)
         {
-            if (IsRightToLeft())
+            if (IsRightToLeft)
                 FlipX(ref pt);
+            
             return SetItemPosition(_FolderH, _ShellH, fname, pt);
         }
 
@@ -58,8 +61,9 @@ namespace DesktopIconsManipulator
         /// <returns>True if the Icon was found and changed, false otherwise</returns>
         internal bool SetItemPosition(int index, Point pt)
         {
-            if (IsRightToLeft())
+            if (IsRightToLeft)
                 FlipX(ref pt);
+            
             return SetItemPositionById(_FolderH, _ShellH, index, pt);
         }
 
@@ -75,6 +79,14 @@ namespace DesktopIconsManipulator
             if (icons.Count != points.Count)
                 throw new ArgumentException($"{nameof(icons)} and {nameof(points)} must be same length");
 
+            if (IsRightToLeft)
+                for (int i = 0; i < points.Count; i++)
+                {
+                    Point p = points[i];
+                    FlipX(ref p);
+                    points[i] = p;
+                }
+            
             int[] indexes = icons.Select(ic => ic.ID).ToArray();
             Point[] pointsArr = points.ToArray();
             bool flag = false;
