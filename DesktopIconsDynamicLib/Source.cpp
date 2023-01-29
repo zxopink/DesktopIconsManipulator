@@ -243,6 +243,17 @@ EXTERN_DLL_EXPORT void RefreshView(IFolderView2* spView, int fRedrawOn)
 	spView->SetRedraw(fRedrawOn);
 }
 
+//Unused
+void UpdateDesktop()
+{
+    DWORD_PTR res;
+    const HWND hDesktop = GetDesktopWindow();
+    
+	LPARAM lParam = MAKELPARAM(0x1A2D, 0xF318);
+    SendMessageTimeout(HWND_BROADCAST, WM_NCPAINT, 0, lParam, 0, 1000, &res);
+    SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, lParam, 0, 1000, &res);
+}
+
 EXTERN_DLL_EXPORT RECT GetDesktopSize()
 {
     RECT desktop;

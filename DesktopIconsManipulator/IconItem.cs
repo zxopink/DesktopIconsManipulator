@@ -14,13 +14,12 @@ namespace DesktopIconsManipulator
         /// <summary>Does the icon still exist (According to last refresh)</summary>
         public bool Exists => Manager.Icons.Contains(this);
 
-        internal readonly string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        public string FullPath => Path.Combine(DesktopPath, Name);
         public string Name { get; internal set; }
         public int ID { get; internal set; }
 
-        public bool IsFile => File.Exists(FullPath);
-        public bool IsDirectory => Directory.Exists(FullPath);
+        /// <summary>'string.Empty' if the icon is unknown</summary>
+        public string FullPath { get; }
+        public IconType IconType { get; }
 
         internal bool _locChanged;
         internal Point _location;
@@ -63,8 +62,10 @@ namespace DesktopIconsManipulator
             }
         }
 
-        public IconItem(IconsManipulator instance, string name, int id)
+        public IconItem(IconsManipulator instance, string name, int id, string fullName, IconType type)
         {
+            FullPath = fullName;
+            IconType = type;
             Name = name;
             ID = id;
             Manager = instance;

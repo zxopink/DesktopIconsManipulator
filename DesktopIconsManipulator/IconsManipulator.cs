@@ -46,7 +46,6 @@ namespace DesktopIconsManipulator
         /// <returns>true if text flows from right to left; otherwise, false.</returns>
         private bool _IsRightToLeft() => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
 
-
         /// <summary>Refresh catched data to keep up with new item changes</summary>
         public void Refresh()
         {

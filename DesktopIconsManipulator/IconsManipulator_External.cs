@@ -47,6 +47,7 @@ namespace DesktopIconsManipulator
 
         [DllImport(DLL_NAME)]
         private static extern int RefreshView(IntPtr folderPtr, int fRedrawOn);
+        
         [DllImport(DLL_NAME)]
         private static extern RECT GetDesktopSize();
     }

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,30 +35,79 @@ namespace DesktopIconsManipulator
             var icons = new List<IconItem>();
             StringBuilder strBuilder = new StringBuilder(CPP_STR_LIMIT /*Like Cpp's limit*/);
             int count = GetItemsCount(_FolderH);
+
+            string[] files = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            string[] dirs = Directory.GetDirectories(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            
+            List<string> filesAndDirs = new List<string>(files.Length + dirs.Length);
+            filesAndDirs.AddRange(files);
+            filesAndDirs.AddRange(dirs);
+            
             for (int i = 0; i < count; i++)
             {
                 GetItemId(i, _FolderH, _ShellH, strBuilder);
                 string fName = strBuilder.ToString();
-                if (!string.IsNullOrWhiteSpace(fName))
-                {
-                    IconItem icon = new IconItem(this, fName, i);
-                    if (_icons != null)
-                    {
-                        IconItem prevIcon = _icons.Find(ic => ic == icon);
-                        if (prevIcon != null)
-                        {
-                            if (icon.Location != prevIcon.Location)
-                                prevIcon.Location = icon.Location;
-                            
-                            prevIcon.ID = i;
-                            icon = prevIcon; //Replace new icon
-                        }
-                    }    
+
+                (string fullName, IconType type) = GetIconInfo(fName, filesAndDirs);
+                if (!string.IsNullOrEmpty(fullName))
+                    filesAndDirs.Remove(fullName);
+
+                IconItem icon = GetIcon(i, fName, fullName, type);
+                if (icon != null)
                     icons.Add(icon);
-                }
+
                 strBuilder.Clear();
             }
             _icons = icons;
+        }
+
+        private (string fullName, IconType type) GetIconInfo(string icoName, IList<string> filesAndDirs)
+        {
+            //We have 2 options to check:
+            //1. File extension is enabled and the icon's name is the files' name
+            //2. File extension is disabled and we have to look for the extension in files
+            //Option 1
+            
+            string iconFullPath = GetFullPath(icoName);
+            if (File.Exists(iconFullPath))
+                return (iconFullPath, IconType.File);
+            if (Directory.Exists(iconFullPath))
+                return (iconFullPath, IconType.Folder);
+
+            //Option 2
+            string fullName = filesAndDirs.FirstOrDefault(f => Path.GetFileNameWithoutExtension(f) == icoName);
+            if (string.IsNullOrEmpty(fullName))
+                return (string.Empty, IconType.Unknown); //Shortcut
+
+            if (Directory.Exists(fullName)) //(Path.GetExtension(fullName) == string.Empty)
+                return (fullName, IconType.Folder);
+            return (fullName, IconType.File);
+        }
+
+        private string GetFullPath(string fileName) =>
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+
+
+        private IconItem GetIcon(int index, string fName, string fullName, IconType type)
+        {
+            IconItem icon = null;
+            if (!string.IsNullOrWhiteSpace(fName))
+            {
+                icon = new IconItem(this, fName, index, fullName, type);
+                if (_icons != null)
+                {
+                    IconItem prevIcon = _icons.Find(ic => ic == icon);
+                    if (prevIcon != null)
+                    {
+                        if (icon.Location != prevIcon.Location)
+                            prevIcon.Location = icon.Location;
+
+                        prevIcon.ID = index;
+                        icon = prevIcon; //Replace new icon
+                    }
+                }
+            }
+            return icon;
         }
 
         /// <summary>
